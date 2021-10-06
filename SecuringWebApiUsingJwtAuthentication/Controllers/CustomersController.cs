@@ -18,6 +18,7 @@ namespace SecuringWebApiUsingJwtAuthentication.Controllers
         }
 
         [HttpPost]
+        [Route("login")]
         public async Task<IActionResult> Login(LoginRequest loginRequest)
         {
             if (loginRequest == null || string.IsNullOrEmpty(loginRequest.Username) || string.IsNullOrEmpty(loginRequest.Password))
