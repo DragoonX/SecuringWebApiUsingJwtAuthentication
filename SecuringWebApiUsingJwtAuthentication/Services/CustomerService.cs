@@ -2,8 +2,6 @@
 using SecuringWebApiUsingJwtAuthentication.Helpers;
 using SecuringWebApiUsingJwtAuthentication.Interfaces;
 using SecuringWebApiUsingJwtAuthentication.Requests;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,16 +9,16 @@ namespace SecuringWebApiUsingJwtAuthentication.Services
 {
     public class CustomerService : ICustomerService
     {
-        private readonly CustomersDbContext customersDbContext;
+        private readonly CustomersDbContext _customersDbContext;
 
         public CustomerService(CustomersDbContext customersDbContext)
         {
-            this.customersDbContext = customersDbContext;
+            _customersDbContext = customersDbContext;
         }
 
         public async Task<LoginResponse> Login(LoginRequest loginRequest)
         {
-            var customer = customersDbContext.Customers.SingleOrDefault(customer => customer.Active && customer.Username == loginRequest.Username);
+            var customer = _customersDbContext.Customers.SingleOrDefault(customer => customer.Active && customer.Username == loginRequest.Username);
             if (customer == null)
             {
                 return null;

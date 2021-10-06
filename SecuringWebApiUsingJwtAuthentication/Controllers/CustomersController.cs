@@ -17,6 +17,7 @@ namespace SecuringWebApiUsingJwtAuthentication.Controllers
             this.customerService = customerService;
         }
 
+        [HttpPost]
         public async Task<IActionResult> Login(LoginRequest loginRequest)
         {
             if (loginRequest == null || string.IsNullOrEmpty(loginRequest.Username) || string.IsNullOrEmpty(loginRequest.Password))
@@ -24,7 +25,7 @@ namespace SecuringWebApiUsingJwtAuthentication.Controllers
                 return BadRequest("Missing login details");
             }
 
-            var loginResponse = await customerService.Login(loginRequest);
+            LoginResponse loginResponse = await customerService.Login(loginRequest);
 
             if (loginResponse == null)
             {
